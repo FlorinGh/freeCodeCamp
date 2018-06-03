@@ -1,0 +1,95 @@
+/* css gives the style of your page; everything that is added in html (and sometimes js) is referenced here and given a style */
+
+/* select all and apply margin and padding zero */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* style for class main */
+.main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courier New";
+  background-color: #708090;
+  background-size: 64px 128px;
+}
+
+/* style for container in main */
+.main .container {
+    height: 560px;
+    width: 900px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+    align-self: center;
+    position: relative;
+}
+
+/* creates a shadow around the container class */
+@media (min-width: 1000px) {
+  .main .container {
+    box-shadow: 2px 2px 20px;
+  } 
+}
+
+/* this controls the title defined inside container */
+.main .container #title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em; /* 2x the size in container*/
+}
+
+/* this class will contain the bar chart */
+.main .container .visHolder {
+  position: absolute;
+  top: 6em; /* 6x the size in container*/
+}
+
+/*  used to specify extra information about each bar when the user moves the mouse pointer over it */
+#tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100px;
+  height: 50px;
+  padding: 2px;
+  font: 12px;
+  background: lightblue;
+  box-shadow: 1px 1px 10px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* used to show the tool tip ontop of the container */
+.overlay {
+  position: absolute;
+  background: #fff;
+  pointer-events: none;
+}
+
+/* style for x axis */
+#x-axis path {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
+
+/* style fir y axis */
+#y-axis path {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
+
+/* style for bottom note */
+.info {
+  font-size: 0.8em;
+}
