@@ -49,7 +49,7 @@ d3.json('https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
     .text('More Information: http://www.bea.gov/national/pdf/nipaguid.pdf')
     .attr('class', 'info');
   
-  // creates a variable years that will store year + quarter
+  // creates a variable named years that will store year + quarter
   var years = data.data.map(function(item) {
     var quarter;
     var temp = item[0].substring(5, 7); // reads the month
@@ -86,34 +86,45 @@ d3.json('https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/mas
     .attr('id', 'x-axis')
     .attr('transform', 'translate(60, 400)');
   
+  // extracts gdp values in a new variable, from data, second item in list
   var GDP = data.data.map(function(item) {
     return item[1]
   });
   
   var scaledGDP = [];
-  
   var gdpMin = d3.min(GDP);
   var gdpMax = d3.max(GDP);
   
+  // creates a linear scale for gdp values
+  // to ensure the scale starts with a positive value, the scale starts from
+  // min/max*h and goes up to max/max*h => manualy creating teh scale
   var linearScale = d3.scaleLinear()
     .domain([gdpMin, gdpMax])
     .range([(gdpMin/gdpMax) * height, height]);
   
+  // mapping the gdp values in a new variable using the linear scale
   scaledGDP = GDP.map(function(item) {
     return linearScale(item);
   });
   
+  // creating a scale for y axis; this must be inverted as the origin in SVG is top left corner
   var yAxisScale = d3.scaleLinear()
     .domain([gdpMin, gdpMax])
     .range([height, (gdpMin/gdpMax) * height]);
   
+  // creating the axis with this scale
   var yAxis = d3.axisLeft(yAxisScale)
-    
+  
+  // calls the y axis -> adds the axis on the SVG
   var yAxisGroup = svgContainer.append('g')
     .call(yAxis)
     .attr('id', 'y-axis')
     .attr('transform', 'translate(60, 0)');
-    
+  
+  // up to this point we have created the canvas for the chart: the title, the axes, the scales for each axis, but nothing is yet plotted
+  // the following lines define the graph and some other events when the mouse is hovering inside it
+  
+  //
   d3.select('svg').selectAll('rect')
     .data(scaledGDP)
     .enter()
