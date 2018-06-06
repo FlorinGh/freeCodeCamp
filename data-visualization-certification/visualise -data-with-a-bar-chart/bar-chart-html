@@ -1,9 +1,0 @@
-<!–– this project doesn't use html that much ––>
-<!–– the objective here is to understand how all these connect ––>
-<!–– and how to use d3.js, ajax and json for data visualisation ––>
-<div class="main">
- <div class='container'>
-    <div id='title'>United States Gross Domestic Product</div>
-    <div class='visHolder'></div>
-  </div>
-</div>
